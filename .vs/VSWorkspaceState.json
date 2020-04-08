@@ -1,0 +1,20 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\app\\Http",
+    "\\app\\Imports",
+    "\\database",
+    "\\database\\factories",
+    "\\database\\migrations",
+    "\\database\\migrations\\seeds",
+    "\\resources",
+    "\\resources\\views",
+    "\\resources\\views\\admin",
+    "\\resources\\views\\admin\\designations",
+    "\\resources\\views\\layouts",
+    "\\resources\\views\\partials"
+  ],
+  "SelectedNode": "\\database\\migrations\\2019_07_03_185944_add_fields_to_participants_training.php",
+  "PreviewInSolutionExplorer": false
+}
