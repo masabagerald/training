@@ -22,7 +22,11 @@ class ParticipantsImport implements ToModel,WithBatchInserts,WithHeadingRow
             'first_name'  => $row['first_name'],
             'middle_name' => $row['middle_name'],
             'sex' => $row['sex'],
+<<<<<<< HEAD
             'job_title_id' => $row['job_title'],
+=======
+            //'job_title_id' => $row['job_title'],
+>>>>>>> 61d2400fe89070e3c429b2b1df45b4380afd931e
             'mobile'  => $row['phone_number'],
              'health_facility' => $row['facility'],
             'last_name'    => $row['surname'],

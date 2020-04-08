@@ -135,6 +135,15 @@
                                     <span>Feedback Report</span>
                                 </a>
                             </li>@endcan
+<<<<<<< HEAD
+=======
+                            <li>
+                                <a href="{{ route('admin.reports.index') }}">
+                                    <i class="fa fa-user"></i>
+                                    <span>Training Report</span>
+                                </a>
+                            </li>
+>>>>>>> 61d2400fe89070e3c429b2b1df45b4380afd931e
 
                         @can('user_action_access')
                             @endcan
