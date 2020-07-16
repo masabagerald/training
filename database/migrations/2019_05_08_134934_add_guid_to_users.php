@@ -14,7 +14,7 @@ class AddGuidToUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('guid')->unique();
+           $table->string('guid')->unique();
         });
     }
 

@@ -111,14 +111,16 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('categories', 'Admin\CategoryController');
     Route::resource('subcategories', 'Admin\SubcategoryController');
 
-<<<<<<< HEAD
-=======
     Route::resource('reports', 'Admin\ReportController');
     Route::post('reports_mass_destroy', ['uses' => 'Admin\ReportController@massDestroy', 'as' => 'reports.mass_destroy']);
     Route::post('reports_restore/{id}', ['uses' => 'Admin\ReportController@restore', 'as' => 'reports.restore']);
     Route::delete('reports_perma_del/{id}', ['uses' => 'Admin\ReportController@perma_del', 'as' => 'reports.perma_del']);
 
->>>>>>> 61d2400fe89070e3c429b2b1df45b4380afd931e
+
+    Route::resource('mentorship', 'Admin\MentorshipController');
+    Route::post('mentorship_mass_destroy', ['uses' => 'Admin\MentorshipController@massDestroy', 'as' => 'mentorship.mass_destroy']);
+    Route::post('mentorship_restore/{id}', ['uses' => 'Admin\MentorshipController@restore', 'as' => 'mentorship.restore']);
+    Route::delete('mentorship_perma_del/{id}', ['uses' => 'Admin\MentorshipController@perma_del', 'as' => 'mentorship.perma_del']);
 
 
 
