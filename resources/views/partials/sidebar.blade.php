@@ -135,12 +135,7 @@
                                     <span>Feedback Report</span>
                                 </a>
                             </li>@endcan
-                            <li>
-                                <a href="{{ route('admin.reports.index') }}">
-                                    <i class="fa fa-user"></i>
-                                    <span>Training Report</span>
-                                </a>
-                            </li>
+                            
 
                         @can('user_action_access')
                             @endcan
@@ -148,53 +143,86 @@
                     </ul>
                 </li>
             @endcan
-
             @can('user_management_access')
-                <li class="treeview">
-                    <a href="#t">
-                        <i class="fa fa-book"></i>
-                        <span> Mentorship Management</span>
-                        <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    </a>
-                    <ul class="treeview-menu">
+            <li class="treeview">
+                <a href="#t">
+                    <i class="fa fa-book"></i>
+                    <span> Mentorship Management</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                    @can('role_access')
+                        <li>
+                            <a href="{{ route('admin.mentorship.index') }}">
+                                <i class="fa fa-briefcase"></i>
+                                <span>Mentorship List</span>
+                            </a>
+                        </li>@endcan
                         @can('role_access')
                             <li>
                                 <a href="{{ route('admin.mentorship.index') }}">
                                     <i class="fa fa-briefcase"></i>
-                                    <span>Mentorship List</span>
+                                    <span>mentors List</span>
                                 </a>
                             </li>@endcan
-                            @can('role_access')
-                                <li>
-                                    <a href="{{ route('admin.mentorship.index') }}">
-                                        <i class="fa fa-briefcase"></i>
-                                        <span>mentors List</span>
-                                    </a>
-                                </li>@endcan
 
-                        @can('user_access')
-                            <li>
-                                <a href="{{ route('admin.mentorship.index') }}">
-                                    <i class="fa fa-user"></i>
-                                    <span>Reports & Analysis</span>
-                                </a>
-                            </li>@endcan
-                            <li>
-                                <a href="{{ route('admin.mentorship.index') }}">
-                                    <i class="fa fa-user"></i>
-                                    <span>Training Report</span>
-                                </a>
-                            </li>
+                    @can('user_access')
+                        <li>
+                            <a href="{{ route('admin.mentorship.index') }}">
+                                <i class="fa fa-user"></i>
+                                <span>Reports & Analysis</span>
+                            </a>
+                        </li>@endcan
+                        <li>
+                            <a href="{{ route('admin.mentorship.index') }}">
+                                <i class="fa fa-user"></i>
+                                <span>Training Report</span>
+                            </a>
+                        </li>
 
-                        @can('user_action_access')
-                            @endcan
+                    @can('user_action_access')
+                        @endcan
 
-                    </ul>
-                </li>
-            @endcan
-            
+                </ul>
+            </li>
+        @endcan
+        
+            @can('user_management_access')
+            <li class="treeview">
+                <a href="#t">
+                    <i class="fa fa-users"></i>
+                    <span>Reports</span>
+                    <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+                </a>
+                <ul class="treeview-menu">
+                   
+
+                    @can('user_access')
+                        <li>
+                            <a href="{{ route('admin.assessments.index') }}">
+                                <i class="fa fa-user"></i>
+                                <span>Feedback Report</span>
+                            </a>
+                        </li>@endcan
+                        <li>
+                            <a href="{{ route('admin.reports.index') }}">
+                                <i class="fa fa-user"></i>
+                                <span>Training Report</span>
+                            </a>
+                        </li>
+
+                    @can('user_action_access')
+                    @endcan
+
+                </ul>
+            </li>
+             @endcan
+
+         
 
             
 
