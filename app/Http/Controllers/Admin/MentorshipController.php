@@ -8,6 +8,7 @@ use App\Mentorship;
 use App\Participant;
 use App\MentorshipCategory;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Session;
 
 class MentorshipController extends Controller
 {
@@ -101,7 +102,7 @@ class MentorshipController extends Controller
         //dd($all_participants);
 
 
-        return view('admin.trainings.show', compact('training','participants','enum_sex','job_titles','all_participants'));
+        return view('admin.mentorships.show', compact('training','participants','enum_sex','job_titles','all_participants'));
     }
 
     /**
@@ -136,5 +137,23 @@ class MentorshipController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function addParticipant(Request $request){
+
+        $mentorship = Mentorship::find($request->id);    
+
+        $mentorship->participants()->attach($request->students);
+
+        if($mentorship){
+
+            Session::flash('message','Added Successfully');
+
+        }else{
+            Session::flash('message','something went wrong');
+        }
+
+    return back();
+
     }
 }

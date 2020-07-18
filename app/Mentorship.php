@@ -19,10 +19,21 @@ class Mentorship extends Model
 
     public function participants()
     {
-        return $this->belongsToMany(Participant::class,'mentorship_participant');
-          //  ->withPivot('remarks','comments','pre_test','post_test')
-           // ->withTimestamps();
+        return $this->belongsToMany(Participant::class,'mentorship_participant')
+          ->withPivot('notes')
+           ->withTimestamps();
     }
+
+    public function mentorship_category(){
+
+        return $this->belongsTo(MentorshipCategory::class,'category');
+    }
+
+    public function facility(){
+
+        return $this->belongsTo(Facility::class,'facility_name');
+    }
+
 
    
    

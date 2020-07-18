@@ -129,6 +129,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
 
 
+    Route::post('addParticipant', ['uses' => 'Admin\MentorshipController@addParticipant', 'as' => 'mentorship.addParticipant']);
+
+
+
 
 
 

@@ -3,54 +3,55 @@
 @section('content')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">
 
-    <h3 class="page-title">@lang('quickadmin.training.title') Summary</h3>
+    <h3 class="page-title">Mentorship Summary Page</h3>
 
     <div class="panel panel-default">
         <div class="panel-heading">
             @lang('quickadmin.qa_view')
         </div>
 
-        {{-- <div class="panel-body table-responsive">
+        <div class="panel-body table-responsive">
             <div class="row">
                 <div class="col-md-4">
                     <table class="table  table-bordered table-striped">
                         <tr>
-                            <th>@lang('quickadmin.training.fields.type-of-training')</th>
-                            <td field-key='type_of_training'>{{ $training->type->name or ''}}</td>
+                            <th>Name</th>
+                            <td field-key='type_of_training'>{{ $training->title}}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.training.fields.region')</th>
-                            <td field-key='region'>{{ $training->region }}</td>
+                            <th>Category</th>
+                            <td field-key='type_of_training'>{{ $training->mentorship_category->name}}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.training.fields.venue')</th>
-                            <td field-key='venue'>{{ $training->venue }}</td>
+                            <th>Start Date</th>
+                            <td field-key='region'>{{ $training->srart_date }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.training.fields.start-date')</th>
-                            <td field-key='start_date'>{{ $training->start_date }}</td>
+                            <th>End Date</th>
+                            <td field-key='venue'>{{ $training->end_date }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.training.fields.end-date')</th>
-                            <td field-key='end_date'>{{ $training->end_date }}</td>
+                            <th>Facility</th>
+                            <td field-key='start_date'>{{ $training->facility->name }}</td>
+                        </tr>
+                        <tr>
+                            <th>Issues Arising</th>
+                            <td field-key='end_date'>{{ $training->issues_arising }}</td>
                         </tr>
 
                         <tr>
-                            <th>@lang('quickadmin.training.fields.sponsor')</th>
-                            <td field-key='sponsor'>{{ $training->sponsor }}</td>
+                            <th>Positive Findings</th>
+                            <td field-key='sponsor'>{{ $training->positive_findings }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.training.fields.comments')</th>
-                            <td field-key='comments'>{!! $training->comments !!}</td>
+                            <th>Improvement Areas</th>
+                            <td field-key='comments'>{!! $training->improvement_areas!!}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.training.fields.pictures')</th>
-                            <td field-key='pictures'> @foreach($training->getMedia('pictures') as $media)
-                                <p class="form-group">
-                                    <a href="{{ $media->getUrl() }}" target="_blank">{{ $media->name }} ({{ $media->size }} KB)</a>
-                                </p>
-                            @endforeach</td>
+                            <th>Recommendations</th>
+                            <td field-key='comments'>{!! $training->recommendations!!}</td>
                         </tr>
+                        
                     </table>
 
                 </div>
@@ -200,7 +201,7 @@
 
                         <div class="box-body">
 
-                            <form action="{{route('admin.trainings.addParticipant')}}" method="post">
+                            <form action="{{route('admin.mentorship.addParticipant')}}" method="post">
                                 {{ csrf_field() }}
 
                                 <input type="hidden" name="id" value="{{$training->id}}">
@@ -237,9 +238,9 @@
             <p>&nbsp;</p>
 
             <a href="{{ route('admin.trainings.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
-        </div> --}}
+        </div>
     </div>
-S
+ 
 
     <!--=========================== Modal to Add new  Participants to the selected Training ==============================================-->
 
@@ -548,7 +549,7 @@ S
                                            <label class="control-label">Training</label>
                                            <input type="hidden" value="{{$training->id}}" name="training_id" placeholder="{{$training->id}}" >
 
-                                           <input type="text"  class="form-control"  placeholder="{{$training->type->name}}" readonly>
+                                           <input type="text"  class="form-control"  placeholder="{{$training->name}}" readonly>
 
                                        </div>
 
@@ -655,7 +656,7 @@ S
                                         <label class="control-label">Training</label>
                                         <input type="hidden" value="{{$training->id}}" name="training_id" placeholder="{{$training->id}}" >
 
-                                        <input type="text"  class="form-control"  placeholder="{{$training->type->name}}" readonly>
+                                        <input type="text"  class="form-control"  placeholder="{{$training->name}}" readonly>
 
                                     </div>
 
