@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mentorship;
+use App\Participant;
+use App\MentorshipCategory;
+use Illuminate\Support\Facades\Gate;
 
 class MentorshipController extends Controller
 {
@@ -27,7 +30,10 @@ class MentorshipController extends Controller
      */
     public function create()
     {
-        return view('admin.mentorships.create');
+       
+        $categories = \App\MentorshipCategory::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $facilities = \App\Facility::get()->pluck('name','id')->prepend(trans('quickadmin.qa_please_select'), '');
+        return view('admin.mentorships.create', compact('categories','facilities'));
     }
 
     /**
@@ -38,7 +44,38 @@ class MentorshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!Gate::allows('training_create')) {
+            return abort(401);
+        }
+   
+        $mentorship =\App\Mentorship::create($request->all());
+
+        $mentorship_id = $mentorship->id;
+
+        switch ($request->action_button) {
+
+            case 'Save & exit':
+
+                return redirect()->route('admin.mentorship.index');
+
+                break;
+
+            case 'Save & Add participants':
+
+                // $training_id = $training->id;
+               // $participants = Training::find($training_id)->participants;
+
+
+               // $job_titles = \App\Designation::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+               // $enum_sex = Participant::$enum_sex;
+
+                return redirect()->route('admin.mentorship.show',[$mentorship->id]);
+
+
+                //return view('admin.trainings.participant_page', compact('participants', 'job_titles', 'enum_sex', 'training_id'));
+
+                break;
+            }
     }
 
     /**
@@ -49,7 +86,22 @@ class MentorshipController extends Controller
      */
     public function show($id)
     {
-        //
+         // $data = Crypt::decrypt($id);
+         if (! Gate::allows('training_view')) {
+            return abort(401);
+        }
+        $training = Mentorship::findOrFail($id);
+        $participants = Mentorship::find($id)->participants;
+        $job_titles = \App\Designation::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+
+        $enum_sex = Participant::$enum_sex;
+
+        $all_participants = \App\Participant::get()->pluck('first_name','id')->prepend(trans('quickadmin.qa_please_select'), '');
+        $all_participants =  Participant::all();
+        //dd($all_participants);
+
+
+        return view('admin.trainings.show', compact('training','participants','enum_sex','job_titles','all_participants'));
     }
 
     /**

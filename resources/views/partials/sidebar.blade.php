@@ -162,9 +162,9 @@
                         </li>@endcan
                         @can('role_access')
                             <li>
-                                <a href="{{ route('admin.mentorship.index') }}">
+                                <a href="{{ route('admin.mentorship_categories.index') }}">
                                     <i class="fa fa-briefcase"></i>
-                                    <span>mentors List</span>
+                                    <span>Mentorship category</span>
                                 </a>
                             </li>@endcan
 
