@@ -130,6 +130,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
 
     Route::post('addParticipant', ['uses' => 'Admin\MentorshipController@addParticipant', 'as' => 'mentorship.addParticipant']);
+    Route::post('attachMentors', ['uses' => 'Admin\MentorshipController@attachMentors', 'as' => 'mentorship.attachMentors']);
+   // mentorship.attachMentors
 
 
 

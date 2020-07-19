@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Mentorship;
 use App\Participant;
 use App\MentorshipCategory;
+use App\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 
@@ -99,10 +100,13 @@ class MentorshipController extends Controller
 
         $all_participants = \App\Participant::get()->pluck('first_name','id')->prepend(trans('quickadmin.qa_please_select'), '');
         $all_participants =  Participant::all();
+
+        $mentors = User::all();
+        $training_mentors = Mentorship::find($id)->tutors;;
         //dd($all_participants);
 
 
-        return view('admin.mentorships.show', compact('training','participants','enum_sex','job_titles','all_participants'));
+        return view('admin.mentorships.show', compact('training','participants','enum_sex','job_titles','all_participants','training_mentors','mentors'));
     }
 
     /**
@@ -139,6 +143,24 @@ class MentorshipController extends Controller
         //
     }
 
+    public function attachMentors(Request $request){
+
+        $mentorship = Mentorship::find($request->id);    
+
+        $mentorship->tutors()->attach($request->mentors);
+
+        if($mentorship){
+
+            Session::flash('message','Added Successfully');
+
+        }else{
+            Session::flash('message','something went wrong');
+        }
+
+    return back();
+
+    }
+
     public function addParticipant(Request $request){
 
         $mentorship = Mentorship::find($request->id);    
@@ -156,4 +178,38 @@ class MentorshipController extends Controller
     return back();
 
     }
+
+    public  function  saveParticipant(StoreParticipantsRequest $req){
+
+        $participant = new Participant();
+
+        $participant->pin = $req->pin;
+        $participant->first_name = $req->first_name;
+        $participant->middle_name = $req->middle_name;
+        $participant->last_name = $req->last_name;
+        $participant->sex = $req->sex;
+        $participant->health_facility = $req->health_facility;
+        $participant->postal_address = $req->postal_address;
+        $participant->district = $req->district;
+        $participant->subcounty = $req->subcounty;
+        $participant->profession = $req->profession;
+        $participant->education_level = $req->education_level;
+        $participant->mobile = $req->mobile;
+        $participant->comments = $req->comments;
+        $participant->dob = $req->dob;
+
+
+        $participant->save();
+
+        foreach ($req->input('previous', []) as $data) {
+            $participant->previousTraining()->create($data);
+        }
+
+        $training = Mentorship::find($req->training_id);
+
+        $training->participants()->attach($participant->id);
+
+        return response()->json($participant);
+
+      }
 }

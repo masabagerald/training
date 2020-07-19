@@ -34,6 +34,14 @@ class Mentorship extends Model
         return $this->belongsTo(Facility::class,'facility_name');
     }
 
+    public function tutors(){
+
+        return $this->belongsToMany(User::class,'mentorship_tutors')
+          ->withPivot('notes')
+           ->withTimestamps();
+    }
+  //  mentorship_tu $ttors
+
 
    
    

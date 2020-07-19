@@ -61,7 +61,7 @@
                         <div class="box-header">
                             <div class="row">
                                 <div class="col-md-6">
-                                    Participants for {{$training->type->name or ''."(".$training->start_date." to ".$training->end_date.")"}}
+                                    Participants for {{$training->title or ''."(".$training->start_date." to ".$training->end_date.")"}}
                                 </div>
                                 <div class="col-md-6">
                                     <button data-toggle="modal" data-target="#NewPartsModal" class="btn btn-success fa fa-plus pull-right">Add</button>
@@ -164,28 +164,30 @@
                     <div class="box box-success">
                         <div class="box box-header">
 
-                            Upload Participants
+                           Adding Mentors
 
                         </div>
                         <div class="box-body">
 
-                            <form class="md-form" method="post" action="{{route('admin.trainings.uploadExcel')}}" enctype="multipart/form-data">
+                            <form action="{{route('admin.mentorship.attachMentors')}}" method="post">
                                 {{ csrf_field() }}
-                                <div class="file-field ">
-                                    <input type="hidden" name="training_id" value="{{$training->id}}">
-                                    <div class="btn btn-rounded peach-gradient btn-lg float-left">
-                                        <span class="text-info">Choose excel file</span>
-                                        <input type="file" name="participants" class="form-control">
-                                    </div>
+
+                                <input type="hidden" name="id" value="{{$training->id}}">
+
+                                <label>Please select mentors</label>
+
+                                <select name="mentors[]" class="form-control select2" multiple required="">
+                                    @foreach($mentors as $mentor)
+
+                                        <option value="{{$mentor->id}}">{{$mentor->name}}</option>
+
+                                    @endforeach
+                                </select>
+
+                                <input type="submit" class="btn btn-success" value="Add Participants">
 
 
-                                            <input type="submit" value="Upload" class="btn btn-success">
-
-
-
-                                </div>
                             </form>
-
                         </div>
 
                     </div>
@@ -235,9 +237,84 @@
 
             </div>
 
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="box box-info">
+                        <div class="box-header">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Mentors for {{$training->title or ''."(".$training->start_date." to ".$training->end_date.")"}}
+                                </div>
+                               
+
+                            </div>
+
+
+                        </div>
+                        <div class="box-body table-responsive">
+                            <table class="table table-bordered table-striped datatable">
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Action</th>                                  
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                @if (count($training_mentors) > 0)
+                                    @foreach ($training_mentors as $mentor)
+                                        <tr data-entry-id="{{ $mentor->id }}">
+                                            <td field-key='first_name'>{{ $mentor->name}}</td>
+                                            <td field-key='first_name'>{{ $mentor->email  }}</td>
+                                            
+                                            <td>
+                                                @can('participant_view')
+                                                    <a href="" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                                @endcan
+                                                @can('participant_edit')
+
+                                                    <a                               
+                                                       class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                                @endcan
+                                                @can('participant_delete')
+                                                    {!! Form::open(array(
+                                                                                            'style' => 'display: inline-block;',
+                                                                                            'method' => 'DELETE',
+                                                                                            'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                                                                            'route' => ['admin.participants.destroy', $mentor->id])) !!}
+                                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                                    {!! Form::close() !!}
+                                                @endcan
+                                            </td>
+
+
+
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="24">@lang('quickadmin.qa_no_entries_in_table')</td>
+                                    </tr>
+                                @endif
+                                </tbody>
+                            </table>
+                        </div>
+
+                        
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
             <p>&nbsp;</p>
 
-            <a href="{{ route('admin.trainings.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
+            <a href="{{ route('admin.mentorship.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>
         </div>
     </div>
  
