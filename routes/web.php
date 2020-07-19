@@ -122,6 +122,18 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('mentorship_restore/{id}', ['uses' => 'Admin\MentorshipController@restore', 'as' => 'mentorship.restore']);
     Route::delete('mentorship_perma_del/{id}', ['uses' => 'Admin\MentorshipController@perma_del', 'as' => 'mentorship.perma_del']);
 
+    Route::resource('mentorship_categories', 'Admin\MentorshipCategoryController');
+    Route::post('category_mass_destroy', ['uses' => 'Admin\MentorshipCategoryController@massDestroy', 'as' => 'mentorship_categories.mass_destroy']);
+    Route::post('category_restore/{id}', ['uses' => 'Admin\MentorshipCategoryControllerr@restore', 'as' => 'mentorship_categories.restore']);
+    Route::delete('category_perma_del/{id}', ['uses' => 'Admin\MentorshipCategoryControllerr@perma_del', 'as' => 'mentorship_categories.perma_del']);
+
+
+
+    Route::post('addParticipant', ['uses' => 'Admin\MentorshipController@addParticipant', 'as' => 'mentorship.addParticipant']);
+    Route::post('attachMentors', ['uses' => 'Admin\MentorshipController@attachMentors', 'as' => 'mentorship.attachMentors']);
+   // mentorship.attachMentors
+
+
 
 
 

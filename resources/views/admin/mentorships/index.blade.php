@@ -70,17 +70,17 @@
                                     
                                                                 <td>
                                     @can('role_view')
-                                    <a href="{{ route('admin.mentorships.show',[$mentorshipy->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    <a href="{{ route('admin.mentorship.show',[$mentorship->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
                                     @endcan
                                     @can('role_edit')
-                                    <a href="{{ route('admin.mentorships.edit',[$mentorship->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    <a href="{{ route('admin.mentorship.edit',[$mentorship->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
                                     @can('role_delete')
 {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['admin.roles.destroy', $mentorship
+                                        'route' => ['admin.mentorship.destroy', $mentorship
                                         ->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
