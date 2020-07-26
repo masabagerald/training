@@ -100,13 +100,16 @@ class MentorshipController extends Controller
 
         $all_participants = \App\Participant::get()->pluck('first_name','id')->prepend(trans('quickadmin.qa_please_select'), '');
         $all_participants =  Participant::all();
+        $venues= \App\Facility::get()->pluck('name','id')->prepend(trans('quickadmin.qa_please_select'), '');
 
         $mentors = User::all();
+        $categories = \App\MentorshipCategory::get()->pluck('name','id')->prepend(trans('quickadmin.qa_please_select'), '');
+
         $training_mentors = Mentorship::find($id)->tutors;;
         //dd($all_participants);
 
 
-        return view('admin.mentorships.show', compact('training','participants','enum_sex','job_titles','all_participants','training_mentors','mentors'));
+        return view('admin.mentorships.show', compact('training','venues','categories','participants','enum_sex','job_titles','all_participants','training_mentors','mentors'));
     }
 
     /**
@@ -130,6 +133,13 @@ class MentorshipController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $mentorship = Mentorship::findOrFail($id);
+
+       
+
+        $mentorship->update($request->all());
+
+        return back();
     }
 
     /**

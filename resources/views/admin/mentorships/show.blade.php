@@ -53,6 +53,9 @@
                         </tr>
                         
                     </table>
+                   
+                        <a data-toggle="modal" data-target="#update_mentorship" class="btn btn-info fa fa-pencil">Update</a>
+               
 
                 </div>
                 <div class="col-md-8">
@@ -144,10 +147,7 @@
                         </div>
 
                         <div class="box-footer">
-                            <button id="a_add" data-toggle="modal" data-target="#attachModal" data-id="{{$training->id}}"  data-name="{{$training->type->name or ''}}" class="btn btn-circle">
-                                <span>Attach Participant scores</span>
-
-                            </button>
+                          
 
 
 
@@ -839,6 +839,155 @@
             </div>
         </div>
     </div>
+
+    
+    <!-- Modal updating mentorship -->
+<div class="modal fade" id="update_mentorship" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update Mentorship</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>        
+      
+        <div class="modal-body">
+
+            {!! Form::model($training, ['method' => 'PUT', 'route' => ['admin.mentorship.update',  $training->id],]) !!}
+          <div class="box box-info">
+         
+          
+              <div class="box box-body">
+             
+                  <div class="row">
+                    <div class="col-xs-6 form-group">
+  
+                        {!! Form::label('title', 'Training Name', ['class' => 'control-label']) !!}
+                        {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('title'))
+                            <p class="help-block">
+                                {{ $errors->first('title') }}
+                            </p>
+                        @endif
+
+                    </div>
+                    <div class="col-xs-6">
+                        {!! Form::label('category', 'Training Category', ['class' => 'control-label']) !!}<br>
+                        {!! Form::select('category', $categories, old('category'), ['class' => 'form-control select2', 'required' => '']) !!}
+                        
+                        <p class="help-block"></p>
+                        @if($errors->has('category'))
+                            <p class="help-block">
+                                {{ $errors->first('category') }}
+                            </p>
+                        @endif
+                    </div>
+                  </div>
+                  <div class="row">
+                      
+                    <div class="col-xs-4">
+                        {!! Form::label('srart_date', 'Start Date', ['class' => 'control-label']) !!}
+                        {!! Form::text('srart_date', old('srart_date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('srart_date'))
+                            <p class="help-block">
+                                {{ $errors->first('srart_date') }}
+                            </p>
+                        @endif
+
+                    </div>
+                    <div class="col-xs-4">
+                        {!! Form::label('end_date', 'End Date', ['class' => 'control-label']) !!}
+                        {!! Form::text('end_date', old('end_date'), ['class' => 'form-control date', 'placeholder' => '', 'required' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('end_date'))
+                            <p class="help-block">
+                                {{ $errors->first('end_date') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="col-xs-4">
+                        {!! Form::label('facility_name', 'Venue', ['class' => 'control-label']) !!}<br>
+                        {!! Form::select('facility_name', $venues, old('facility_name'), ['class' => 'form-control select2', 'required' => '']) !!}
+                       
+                        <p class="help-block"></p>
+                        @if($errors->has('facility_name'))
+                            <p class="help-block">
+                                {{ $errors->first('facility_name') }}
+                            </p>
+                        @endif
+                    </div>
+                  </div>
+                  <div class="row">                    
+                        <div class="col-xs-6">
+                            {!! Form::label('issues_arising', 'Issues Arising', ['class' => 'control-label']) !!}
+                            {!! Form::textarea('issues_arising', old('issues_arising'), ['class' => 'form-control','rows' => 5, 'cols' => 10,'id'=>'issues_arising', 'placeholder' => '']) !!}
+                            <p class="help-block"></p>
+                            @if($errors->has('issues_arising'))
+                                <p class="help-block">
+                                    {{ $errors->first('issues_arising') }}
+                                </p>
+                            @endif
+                        </div>
+                    
+                        <div class="col-xs-6">
+                            {!! Form::label('positive_findings', 'Positive Feedback', ['class' => 'control-label']) !!}
+                            {!! Form::textarea('positive_findings', old('positive_findings'), ['class' => 'form-control','rows' => 5, 'cols' => 10,'id'=>'positive_findings', 'placeholder' => '']) !!}
+                            <p class="help-block"></p>
+                            @if($errors->has('positive_findings'))
+                                <p class="help-block">
+                                    {{ $errors->first('positive_findings') }}
+                                </p>
+                            @endif
+                        </div>
+                  </div> 
+                  <div class="row">
+                    <div class="col-xs-6">
+                        {!! Form::label('improvement_areas', 'Improvement Areas', ['class' => 'control-label editor']) !!}
+                        {!! Form::textarea('improvement_areas', old('improvement_areas'), ['class' => 'form-control','rows' => 5, 'cols' => 10,'id'=>'improvement_areas', 'placeholder' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('improvement_areas'))
+                            <p class="help-block">
+                                {{ $errors->first('improvement_areas') }}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="col-xs-6">
+                        {!! Form::label('recommendations', 'Recommendations', ['class' => 'control-label']) !!}
+                        {!! Form::textarea('recommendations', old('recommendations'), ['class' => 'form-control editor','rows' => 5, 'cols' => 10,'id'=>'recommendations', 'placeholder' => '']) !!}
+                        <p class="help-block"></p>
+                        @if($errors->has('recommendations'))
+                            <p class="help-block">
+                                {{ $errors->first('recommendations') }}
+                            </p>
+                        @endif
+                    </div>
+                  </div>               
+                  
+       
+                 
+                
+              </div>
+              
+
+          </div>
+
+          {!! Form::submit('Update Mentorship', ['class' => ' btn btn-success']) !!}
+          {!! Form::close() !!}
+
+        </div>
+        <div class="modal-footer">
+
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+           
+       
+        
+        </div>
+      </div>
+    </div>
+  </div>
 @stop
 
 @section('javascript')
@@ -846,12 +995,8 @@
     <script src="//cdn.ckeditor.com/4.5.4/full/ckeditor.js"></script>
     <script>
         $('.editor').each(function () {
-                  CKEDITOR.replace($(this).attr('id'),{
-                    filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-                    filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-                    filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-                    filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
-            });
+            
+                  CKEDITOR.replace($(this).attr('id'));
         });
     </script>
 

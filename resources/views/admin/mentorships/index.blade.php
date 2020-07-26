@@ -61,7 +61,7 @@
                                     <td field-key='title'>{{ $mentorship->title}}</td>
                                     <td field-key='title'>{{ $mentorship->srart_date}}</td>
                                     <td field-key='title'>{{ $mentorship->end_date}}</td>
-                                    <td field-key='title'>{{ $mentorship->facility_name}}</td>
+                                    <td field-key='title'>{{ $mentorship->facility->name}}</td>
                                     <td>{{$mentorship->issues_arising}}</td>
                                     <td>{{$mentorship->positive_findings}}</td>
                                     <td>{{$mentorship->improvement_areas}}</td>
