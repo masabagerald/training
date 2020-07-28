@@ -200,6 +200,7 @@ return [
         Adldap\Laravel\AdldapServiceProvider::class,
         Adldap\Laravel\AdldapAuthServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
         
 
     ],
@@ -258,7 +259,8 @@ return [
         'Image'        => Intervention\Image\Facades\Image::class,
         'Form'         => Collective\Html\FormFacade::class,
         'Html'         => Collective\Html\HtmlFacade::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
         
     ],
 
