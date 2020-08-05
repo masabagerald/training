@@ -8,6 +8,7 @@ use App\MentorshipCategory;
 use App\Participant;
 use App\Training;
 use App\TrainingType;
+use Carbon\Carbon;
 use ConsoleTVs\Charts\Facades\Charts;
 
 use Illuminate\Http\Request;
@@ -32,6 +33,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+       //dd(Carbon::now()->month > 6); 
         $total_training= Training::all()->count();
         $total_parts = Participant::all()->count();
 
@@ -40,6 +43,34 @@ class HomeController extends Controller
        // $mentorship = Mentorship::with('mentorship_category.name')->get();
 
         $mentorship = Mentorship::all()->load('mentorship_category');
+
+        
+
+        if(Carbon::now()->month > 6){
+            
+
+           // $from = new Carbon(date('Y').'-07-01');
+            $from = '01-07-'.date('Y');
+           // $to = new Carbon((date('Y')+1).'-06-31');
+            $to =  '31-06-'.(date('Y') +1);            
+
+        }else{
+
+            $from = '01-07'.(date('Y')-1);
+            $to =  '31-06'.date('Y');
+
+        }
+
+        
+
+        
+
+       
+
+        $mentorship= Mentorship::whereBetween('srart_date', [$from, $to])->get();
+
+        
+
   
 
         $trainings = Training::all();
