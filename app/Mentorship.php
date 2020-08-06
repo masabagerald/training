@@ -8,7 +8,9 @@ use App\Participant;
 class Mentorship extends Model
 {
 
-    protected $fillable = ['title','srart_date','end_date','facility_name','category'];
+    protected $fillable = ['title','srart_date','end_date',
+    'facility_name','category','issues_arising','positive_findings',
+    'improvement_areas','recommendations','qi_started','notes'];
     public static function boot()
     {
         parent::boot();
