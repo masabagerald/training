@@ -61,7 +61,7 @@
                     <div class="icon">
                         <i class="ion ion-ios-cart-outline"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
+                <a href="{{route('admin.trainings.index')}}" class="small-box-footer">
                         view all Trainings <i class="fa fa-arrow-circle-right"></i>
                     </a>
                 </div>
@@ -72,7 +72,7 @@
                 <div class="small-box bg-green">
                     <div class="inner">
                         <h3>
-                            {{$mentorship->count()}}
+                            {{$current_quarter->count()}}
                         </h3>
                         <p>
                            Total Mentorships this quarter
@@ -81,8 +81,8 @@
                     <div class="icon">
                         <i class="ion ion-ios-pricetag-outline"></i>
                     </div>
-                    <a href="#" class="small-box-footer">
-                        More info <i class="fa fa-arrow-circle-right"></i>
+                    <a href="{{route('admin.mentorship.index')}}" class="small-box-footer">
+                        View All Mentorships <i class="fa fa-arrow-circle-right"></i>
                     </a>
                 </div>
             </div><!-- ./col -->
@@ -102,8 +102,8 @@
                     <div class="icon">
                         <i class="ion icon-eye-open"></i>
                     </div>
-                    <a href="" class="small-box-footer">
-                        More info <i class="fa fa-arrow-circle-right"></i>
+                    <a href="{{route('admin.trainings.index')}}" class="small-box-footer">
+                        View All Trainings <i class="fa fa-arrow-circle-right"></i>
                     </a>
                 </div>
             </div><!-- ./col -->
@@ -121,14 +121,14 @@
                     <div class="icon">
                         <i class="ion ion-ios-alarm-outline"></i>
                     </div>
-                    <a href="" class="small-box-footer">
-                        More info <i class="fa fa-arrow-circle-right"></i>
+                    <a href="{{route('admin.mentorship.index')}}" class="small-box-footer">
+                        View All Mentorships <i class="fa fa-arrow-circle-right"></i>
                     </a>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="box box-info">
                     <div class="box-header">
                         <h3 class="box-title">Analysis</h3>
@@ -147,22 +147,19 @@
                     </div><!-- /.box-body -->
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Analysis</h3>
+                        <h3 class="box-title">Mentorships Schedule</h3>
                     </div>
                     <div class="box-body">
-                        {!! Charts::styles() !!}
+                        <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css'/>
 
-                        <div class="app">
-                            <center>
-                                {!! $mentortorchip_chart->html() !!}
-                            </center>
-                        </div>
-                        <!-- End Of Main Application -->
-                        {!! Charts::scripts() !!}
-                        {!! $mentortorchip_chart->script() !!}
+                      
+                    
+                        <div id='calendar'></div>
+                    
+                       
                     </div><!-- /.box-body -->
                 </div>
             </div>
@@ -603,4 +600,22 @@
         </div><!-- /.row -->
  --}}
     </section><!-
+@endsection
+
+@section('javascript')
+    @parent
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js'></script>
+    <script>
+        $(document).ready(function () {
+            // page is now ready, initialize the calendar...
+            events={!! json_encode($events)  !!};
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                events: events,
+
+
+            })
+        });
+    </script>
 @endsection

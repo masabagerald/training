@@ -337,5 +337,5 @@ return [
 	'qa_deselect_all' => 'Deselect all',
 	'qa_team-management' => 'Teams',
 	'qa_team-management-singular' => 'Team',
-	'quickadmin_title' => 'Baylor Training',
+	'quickadmin_title' => 'Baylor Training & Mentorship',
 ];
