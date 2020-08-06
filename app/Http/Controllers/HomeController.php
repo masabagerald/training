@@ -34,44 +34,82 @@ class HomeController extends Controller
     public function index()
     {
 
-       //dd(Carbon::now()->month > 6); 
+
+        $events = []; 
+
+        foreach (\App\Mentorship::all() as $mentorship) {
+         
+           $crudFieldValue = $mentorship->getOriginal('srart_date'); 
+
+           if (! $crudFieldValue) {
+               continue;
+           }
+
+           $eventLabel     = $mentorship->mentorship_category->name or '';
+           $prefix         = '';
+           $suffix         = $mentorship->facility->name;
+           $dataFieldValue = trim($prefix . " " . $eventLabel . " in " . $suffix);
+           $events[]       = [ 
+                'title' => $dataFieldValue, 
+                'start' => $crudFieldValue, 
+                'url'   => route('admin.mentorship.show', $mentorship->id)
+           ]; 
+        } 
+
+   
         $total_training= Training::all()->count();
-        $total_parts = Participant::all()->count();
-
-
-
-       // $mentorship = Mentorship::with('mentorship_category.name')->get();
+        $total_parts = Participant::all()->count();     
 
         $mentorship = Mentorship::all()->load('mentorship_category');
-
         
 
-        if(Carbon::now()->month > 6){
-            
+        if(Carbon::now()->month > 6){          
 
-           // $from = new Carbon(date('Y').'-07-01');
-            $from = '01-07-'.date('Y');
-           // $to = new Carbon((date('Y')+1).'-06-31');
-            $to =  '31-06-'.(date('Y') +1);            
+            $start = date('Y').'-07-01';  
+            $end =  (date('Y') +1).'-06-31';            
 
         }else{
 
-            $from = '01-07'.(date('Y')-1);
-            $to =  '31-06'.date('Y');
+            $start= (date('Y')-1).'-07-01';
+            $end =  date('Y').'-06-31';
+        }
+       // dd($end);
 
+ 
+        switch ($x =Carbon::now()->month) {
+
+            case ($x>=7) && ($x<=9) :
+
+                $quarter = "First";
+                $from = date('Y').'-07-01';  
+                $to =  date('Y').'-09-31';   
+                break;
+
+            case ($x>=10) && ($x<=12) :
+                $quarter = "Second";
+                $from = date('Y').'-10-01';  
+                $to =  date('Y').'-12-31';  
+                break;
+
+            case ($x>=1) && ($x<=3) :
+                $quarter = "Third";
+                $from = date('Y').'-01-01';  
+                $to =  date('Y').'-03-31';  
+                break;
+
+            case ($x>=4) && ($x<=6) :
+                $quarter = "Fourth";
+                $from = date('Y').'-04-01';  
+                $to =  date('Y').'-06-31';  
+                break;                
+            
         }
 
         
 
-        
+        $current_quarter = Mentorship::whereBetween('srart_date', [$from, $to])->get();
 
-       
-
-        $mentorship= Mentorship::whereBetween('srart_date', [$from, $to])->get();
-
-        
-
-  
+        $mentorship= Mentorship::whereBetween('srart_date', [$start, $end])->get();
 
         $trainings = Training::all();
 
@@ -144,6 +182,6 @@ class HomeController extends Controller
         
 
 
-        return view('home',compact('total_parts','participant_sex','participant_chart','total_training','chart3','chart4','mentorship','mentortorchip_chart','training_chart'));
+        return view('home',compact('total_parts','current_quarter','events','participant_sex','participant_chart','total_training','chart3','chart4','mentorship','mentortorchip_chart','training_chart'));
     }
 }

@@ -79,7 +79,6 @@
                                 <thead>
                                 <tr>
 
-                                    <th>@lang('quickadmin.participant.fields.pin')</th>
 
                                     <th>@lang('quickadmin.participant.fields.first-name')</th>
                                     <th>@lang('quickadmin.participant.fields.middle-name')</th>
@@ -88,8 +87,7 @@
                                     <th>@lang('quickadmin.participant.fields.sex')</th>
                                     <th>@lang('quickadmin.participant.fields.dob')</th>
                                     <th>@lang('quickadmin.participant.fields.health-facility')</th>
-                                    <th>Pretest score</th>
-                                    <th>Postest score</th>
+                                    
                                     <th>Action</th>
 
                                 </tr>
@@ -97,10 +95,7 @@
                                 <tbody>
                                 @if (count($participants) > 0)
                                     @foreach ($participants as $participant)
-                                        <tr data-entry-id="{{ $participant->id }}">
-
-
-                                            <td field-key='first_name'>{{ $participant->pin }}</td>
+                                        <tr data-entry-id="{{ $participant->id }}">                                         
                                             <td field-key='first_name'>{{ $participant->first_name }}</td>
                                             <td field-key='middle_name'>{{ $participant->middle_name }}</td>
                                             <td field-key='last_name'>{{ $participant->last_name }}</td>
@@ -108,8 +103,7 @@
                                             <td field-key='sex'>{{ $participant->sex }}</td>
                                             <td field-key='dob'>{{ $participant->dob }}</td>
                                             <td field-key='health_facility'>{{ $participant->pivot->facility }}</td>
-                                            <td field-key='health_facility'>{{ $participant->pivot->pre_test }}</td>
-                                            <td field-key='health_facility'>{{ $participant->pivot->post_test }}</td>
+                                            
                                             <td>
                                                 @can('participant_view')
                                                     <a href="" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
@@ -329,7 +323,7 @@
             <div class="modal-content">
                 <div class="modal-header modal-danger">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">New Participant</h4>
+                    <h4 class="modal-title">New Participant </h4>
                 </div>
                 <div class="modal-body">
                     <div id="message" class="alert alert-danger print-error-msg" style="display:none">
@@ -351,29 +345,22 @@
                                     <input type="hidden" name="training_id" id="training_id" value="{{$training->id}}">
 
 
-                                    <div class="col-xs-3 form-group" id="pin-form">
-                                        {!! Form::label('pin', trans('quickadmin.participant.fields.pin').'*', ['class' => 'control-label']) !!}
-                                        {!! Form::text('pin', old('pin'), ['class' => 'form-control','id'=>'pin', 'placeholder' => '', 'required' => '']) !!}
-
-                                        <span class="help-block">
-                                            <div id="error-pin"></div>
-                                    </span>
-                                    </div>
-                                    <div class="col-xs-3 form-group" id="first_name-form">
+                                   
+                                    <div class="col-xs-4 form-group" id="first_name-form">
                                         {!! Form::label('first_name', trans('quickadmin.participant.fields.first-name').'*', ['class' => 'control-label']) !!}
                                         {!! Form::text('first_name', old('first_name'), ['class' => 'form-control','id'=>'first_name', 'placeholder' => '', 'required' => '']) !!}
                                         <span class="help-block">
                                             <strong id="error-first_name"></strong>
                                     </span>
                                     </div>
-                                    <div class="col-xs-3 form-group" id="middle_name-form">
+                                    <div class="col-xs-4 form-group" id="middle_name-form">
                                         {!! Form::label('middle_name', trans('quickadmin.participant.fields.middle-name').'', ['class' => 'control-label']) !!}
                                         {!! Form::text('middle_name', old('middle_name'), ['class' => 'form-control','id'=>'middle_name', 'placeholder' => '']) !!}
                                         <span class="help-block">
                                             <strong id="error-middle_name"></strong>
                                     </span>
                                     </div>
-                                    <div class="col-xs-3 form-group" id="last_name-form">
+                                    <div class="col-xs-4 form-group" id="last_name-form">
                                         {!! Form::label('last_name', trans('quickadmin.participant.fields.last-name').'', ['class' => 'control-label']) !!}
                                         {!! Form::text('last_name', old('last_name'), ['class' => 'form-control','id'=>'last_name', 'placeholder' => '']) !!}
                                         <span class="help-block">
@@ -383,24 +370,15 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-xs-3 form-group" id="mobile-form">
-                                        {!! Form::label('nin', 'Nin'.'', ['class' => 'control-label']) !!}
-                                        {!! Form::text('nin', old('nin'), ['class' => 'form-control','id'=>'nin', 'placeholder' => 'nin','maxlength'=>10]) !!}
-                                        <span class="help-block">
-                                            <strong id="error-nin"></strong>
-                                    </span>
-                                    </div>
-
-
-
-                                    <div class="col-xs-3 form-group" id="mobile-form">
+                                    
+                                    <div class="col-xs-4 form-group" id="mobile-form">
                                         {!! Form::label('mobile', trans('quickadmin.participant.fields.mobile').'', ['class' => 'control-label']) !!}
                                         {!! Form::text('mobile', old('mobile'), ['class' => 'form-control','id'=>'mobile', 'placeholder' => '']) !!}
                                         <span class="help-block">
                                             <strong id="error-mobile"></strong>
                                     </span>
                                     </div>
-                                    <div class="col-xs-3 form-group " id="sex-form">
+                                    <div class="col-xs-4 form-group " id="sex-form">
                                         {!! Form::label('sex', trans('quickadmin.participant.fields.sex').'*', ['class' => 'control-label']) !!}
                                         {!! Form::select('sex', $enum_sex, old('sex'), ['class' => 'form-control select2','id'=>'sex', 'required' => '']) !!}
                                         <span class="help-block">
@@ -408,7 +386,7 @@
                                     </span>
                                     </div>
 
-                                    <div class="col-xs-3 form-group" id="dob-form">
+                                    <div class="col-xs-4 form-group" id="dob-form">
                                         {!! Form::label('dob', trans('quickadmin.participant.fields.dob').'', ['class' => 'control-label']) !!}
                                         {!! Form::date('dob', old('dob'), ['class' => 'form-control date','id'=>'dob', 'placeholder' => '']) !!}
                                         <span class="help-block">
@@ -459,7 +437,7 @@
                                     </div>
 
                                     <div class="col-xs-4 form-group" id="job_title_id-form">
-                                        {!! Form::label('job_title_id', trans('quickadmin.participant.fields.job-title').'', ['class' => 'control-label']) !!}
+                                        {!! Form::label('job_title_id', trans('quickadmin.participant.fields.job-title').'', ['class' => 'control-label']) !!}<br>
                                         {!! Form::select('job_title_id', $job_titles, old('job_title_id'), ['class' => 'form-control select2','id'=>'job_title_id']) !!}
 
                                         <span class="help-block">
@@ -476,110 +454,8 @@
 
 
                                 </div>
-                                <div class="row">
-
-                                    <div class="col-xs-3 form-group" id="education_level-form">
-                                        {!! Form::label('education_level', trans('quickadmin.participant.fields.education-level').'', ['class' => 'control-label']) !!}
-                                        <span class="help-block">
-                                            <strong id="error-job_education_level"></strong>
-                                    </span>
-                                        <div>
-                                            <label>
-                                                {!! Form::radio('education_level', 'primary', false, ['id'=>'primary']) !!}
-                                                P.I – P.7
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label>
-                                                {!! Form::radio('education_level', 'olevel', false, ['id'=>'olevel']) !!}
-                                                S.1 – S.4
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label>
-                                                {!! Form::radio('education_level', 'alevel', false, ['id'=>'alevel']) !!}
-                                                S.5 – S.6
-                                            </label>
-                                        </div><div>
-                                            <label>
-                                                {!! Form::radio('education_level', 'certificate', false, ['id'=>'certificate']) !!}
-                                               Certificate
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label>
-                                                {!! Form::radio('education_level', 'diploma', false, ['id'=>'diploma']) !!}
-                                                Diploma
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label>
-                                                {!! Form::radio('education_level', ' Degree', false, ['id'=>'degree']) !!}
-                                                Degree
-                                            </label>
-                                        </div><div>
-                                            <label>
-                                                {!! Form::radio('education_level', ' Masters', false, ['id'=>'masters']) !!}
-                                               Masters
-                                            </label>
-                                        </div>
-                                        <div>
-                                            <label>
-                                                {!! Form::radio('education_level', 'other', false, ['id'=>'other']) !!}
-                                                other
-                                            </label>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-xs-3 form-group" id="comment-form">
-                                        {!! Form::label('comments', trans('quickadmin.participant.fields.comments').'', ['class' => 'control-label']) !!}
-                                        {!! Form::textarea('comments', old('comments'), ['class' => 'form-control ','rows' => 2, 'cols' => 10,'id'=>'comments', 'placeholder' => '']) !!}
-
-                                        <span class="help-block">
-                                            <strong id="error-comments"></strong>
-                                    </span>
-                                    </div>
-                                    <div class="col-xs-3 form-group" id="prescore-form">
-                                        {!! Form::label('prescore', 'prescore'.'', ['class' => 'control-label']) !!}
-                                        {!! Form::text('prescore', old('prescore'), ['class' => 'form-control','id'=>'prescore', 'placeholder' => '']) !!}
-                                        <span class="help-block">
-                                            <strong id="error-prescore"></strong>
-                                    </span>
-                                    </div>
-                                    <div class="col-xs-3 form-group" id="postscore-form">
-                                        {!! Form::label('postscore', 'postscore'.'', ['class' => 'control-label']) !!}
-                                        {!! Form::text('postscore', old('postscore'), ['class' => 'form-control','id'=>'', 'placeholder' => '']) !!}
-                                        <span class="help-block">
-                                            <strong id="error-postscore"></strong>
-                                    </span>
-                                    </div>
-                                </div>
-                                <div class="box box-info">
-                                    <div class="box-header">
-                                        Previous trainings
-                                    </div>
-                                    <div class="box-body">
-                                        <table class="table table-bordered table-striped">
-                                            <thead>
-                                            <tr>
-                                                <th>Training</th>
-                                                <th>Date</th>
-                                                <th>Organization</th>
-
-                                                <th>Actions</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody id="participant">
-                                            @foreach(old('particiants', []) as $index => $data)
-                                                @include('admin.trainings.prev_training_row', [
-                                                    'index' => $index
-                                                ])
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                        <a href="#" class="btn btn-instagram pull-right add-new">@lang('quickadmin.qa_add_new')</a>
-                                    </div>
-                                </div>
+                              
+                             
 
                                 <button type="button" class="btn btn-link" data-dismiss="modal">Discard</button>
                                 <button type="button" class="btn btn-success saveSchool"  onclick="saveParticipant()">Save Details</button>

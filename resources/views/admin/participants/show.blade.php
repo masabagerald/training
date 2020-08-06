@@ -95,6 +95,58 @@
                 </div>
             </div>
 
+            
+            <ul class="nav nav-tabs" role="tablist"> 
+
+                <li role="tab" class="active"><a href="#training" aria-controls="user_actions" role="tab" data-toggle="tab">Trainings</a></li>
+                <li role="tab"><a href="#mentorship" aria-controls="user_actions" role="tab" data-toggle="tab">Mentorships</a></li>
+            </ul>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                
+                <div role="tabpanel" class="tab-pane active" id="trainings">
+
+                    <table class="table table-bordered table-striped datatable">
+                        <thead>
+                            <tr>
+                                <th>Training Name</th>
+                                <th>Venue</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>
+                                <th>Designation</th>
+                                <th>Pre Score</th>
+                                <th>post Score</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="mentorship">
+
+
+                    <table class="table table-bordered table-striped datatable">
+                        <thead>
+                            <tr>
+                                <th>Mentorship Name</th>
+                                <th>Venue</th>
+                                <th>Start Date</th>
+                                <th>End Date</th>                               
+                                            
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
             <p>&nbsp;</p>
 
             <a href="{{ route('admin.participants.index') }}" class="btn btn-default">@lang('quickadmin.qa_back_to_list')</a>

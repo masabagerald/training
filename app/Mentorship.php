@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Participant;
+use Carbon\Carbon;
 
 class Mentorship extends Model
 {
@@ -15,7 +16,7 @@ class Mentorship extends Model
     {
         parent::boot();
 
-        Training::observe(new \App\Observers\UserActionsObserver);
+        Mentorship::observe(new \App\Observers\UserActionsObserver);
     }
 
 
@@ -42,10 +43,63 @@ class Mentorship extends Model
           ->withPivot('notes')
            ->withTimestamps();
     }
-  //  mentorship_tu $ttors
 
+    public function setSrartDateAttribute($input)
+    {
+        if ($input != null && $input != '') {
+            $this->attributes['srart_date'] = Carbon::createFromFormat(config('app.date_format'), $input)->format('Y-m-d');
+        } else {
+            $this->attributes['srart_date'] = null;
+        }
+    }
+
+    /**
+     * Get attribute from date format
+     * @param $input
+     *
+     * @return string
+     */
+    public function getSrartDateAttribute($input)
+    {
+        $zeroDate = str_replace(['Y', 'm', 'd'], ['0000', '00', '00'], config('app.date_format'));
+
+        if ($input != $zeroDate && $input != null) {
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('app.date_format'));
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * Set attribute to date format
+     * @param $input
+     */
+    public function setEndDateAttribute($input)
+    {
+        if ($input != null && $input != '') {
+            $this->attributes['end_date'] = Carbon::createFromFormat(config('app.date_format'), $input)->format('Y-m-d');
+        } else {
+            $this->attributes['end_date'] = null;
+        }
+    }
+
+    /**
+     * Get attribute from date format
+     * @param $input
+     *
+     * @return string
+     */
+    public function getEndDateAttribute($input)
+    {
+        $zeroDate = str_replace(['Y', 'm', 'd'], ['0000', '00', '00'], config('app.date_format'));
+
+        if ($input != $zeroDate && $input != null) {
+            return Carbon::createFromFormat('Y-m-d', $input)->format(config('app.date_format'));
+        } else {
+            return '';
+        }
+    }
 
    
-   
-    // title, srart_date, end_date, facility_name, issues_arising, positive_findings, improvement_areas, recommendations, qi_started, notes,
+  
 }
