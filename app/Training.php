@@ -98,7 +98,7 @@ class Training extends Model implements HasMedia
     public function participants()
     {
         return $this->belongsToMany(Participant::class,'participant_training')
-            ->withPivot('remarks','comments','pre_test','post_test','position','facility')
+            ->withPivot('remarks','comments','pre_test','post_test','profession','facility')
             ->withTimestamps();
     }
 
