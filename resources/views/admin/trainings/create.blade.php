@@ -18,7 +18,17 @@
         
         <div class="box-body">
             <div class="row">
-                <div class="col-xs-4 form-group">
+                <div class="col-xs-6 form-group">
+                    {!! Form::label('title', <Title></Title>.'*', ['class' => 'control-label']) !!}
+                    {!! Form::text('title', old('title'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('title'))
+                        <p class="help-block">
+                            {{ $errors->first('title') }}
+                        </p>
+                    @endif
+                </div>
+                <div class="col-xs-6 form-group">
                     {!! Form::label('type_of_training', trans('quickadmin.training.fields.type-of-training').'', ['class' => 'control-label']) !!}
 
                     {!! Form::select('type_of_training', $types, old('type_of_training'), ['class' => 'form-control select2', 'required' => '']) !!}
@@ -29,7 +39,11 @@
                         </p>
                     @endif
                 </div>
-                <div class="col-xs-4 form-group">
+
+            </div>
+            <div class="row">
+                
+                <div class="col-xs-6 form-group">
                     {!! Form::label('region', trans('quickadmin.training.fields.region').'', ['class' => 'control-label']) !!}
                     {!! Form::text('region', old('region'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
@@ -39,7 +53,7 @@
                         </p>
                     @endif
                 </div>
-                <div class="col-xs-4 form-group">
+                <div class="col-xs-6 form-group">
                     {!! Form::label('venue', trans('quickadmin.training.fields.venue').'', ['class' => 'control-label']) !!}
                     {!! Form::text('venue', old('venue'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>

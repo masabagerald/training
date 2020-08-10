@@ -187,13 +187,12 @@ class MentorshipController extends Controller
 
     return back();
 
-    }
+    } 
 
-    public  function  saveParticipant(StoreParticipantsRequest $req){
+    public  function  saveParticipant(Request $req){
 
         $participant = new Participant();
-
-        $participant->pin = $req->pin;
+     
         $participant->first_name = $req->first_name;
         $participant->middle_name = $req->middle_name;
         $participant->last_name = $req->last_name;
@@ -202,22 +201,16 @@ class MentorshipController extends Controller
         $participant->postal_address = $req->postal_address;
         $participant->district = $req->district;
         $participant->subcounty = $req->subcounty;
-        $participant->profession = $req->profession;
-        $participant->education_level = $req->education_level;
-        $participant->mobile = $req->mobile;
-        $participant->comments = $req->comments;
+        $participant->profession = $req->profession;      
+        $participant->mobile = $req->mobile;     
         $participant->dob = $req->dob;
-
+        $participant->job_title_id = $req->job_title_id;     
 
         $participant->save();
 
-        foreach ($req->input('previous', []) as $data) {
-            $participant->previousTraining()->create($data);
-        }
+        $mentorship = Mentorship::find($req->mentorship_id);
 
-        $training = Mentorship::find($req->training_id);
-
-        $training->participants()->attach($participant->id);
+        $mentorship->participants()->attach($participant->id,['notes'=>'']);
 
         return response()->json($participant);
 

@@ -200,7 +200,7 @@
 
                         <div class="box-body">
 
-                            <form action="{{route('admin.trainings.addParticipant')}}" method="post">
+                            <form action="" method="post">
                                 {{ csrf_field() }}
 
                                 <input type="hidden" name="id" value="{{$training->id}}">
