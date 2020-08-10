@@ -9,7 +9,6 @@
         <div class="panel-heading">
             @lang('quickadmin.qa_view')
         </div>
-
         <div class="panel-body table-responsive">
             <div class="row">
                 <div class="col-md-4">
@@ -38,7 +37,6 @@
                             <th>Issues Arising</th>
                             <td field-key='end_date'>{{ $training->issues_arising }}</td>
                         </tr>
-
                         <tr>
                             <th>Positive Findings</th>
                             <td field-key='sponsor'>{{ $training->positive_findings }}</td>
@@ -50,13 +48,10 @@
                         <tr>
                             <th>Recommendations</th>
                             <td field-key='comments'>{!! $training->recommendations!!}</td>
-                        </tr>
-                        
-                    </table>
-                   
+                        </tr>                        
+                    </table>                   
                         <a data-toggle="modal" data-target="#update_mentorship" class="btn btn-info fa fa-pencil">Update</a>
                
-
                 </div>
                 <div class="col-md-8">
 
@@ -78,18 +73,14 @@
                             <table class="table table-bordered table-striped datatable">
                                 <thead>
                                 <tr>
-
-
                                     <th>@lang('quickadmin.participant.fields.first-name')</th>
                                     <th>@lang('quickadmin.participant.fields.middle-name')</th>
                                     <th>@lang('quickadmin.participant.fields.last-name')</th>
                                     <th>@lang('quickadmin.participant.fields.mobile')</th>
                                     <th>@lang('quickadmin.participant.fields.sex')</th>
                                     <th>@lang('quickadmin.participant.fields.dob')</th>
-                                    <th>@lang('quickadmin.participant.fields.health-facility')</th>
-                                    
+                                    <th>@lang('quickadmin.participant.fields.health-facility')</th>                                    
                                     <th>Action</th>
-
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -103,7 +94,6 @@
                                             <td field-key='sex'>{{ $participant->sex }}</td>
                                             <td field-key='dob'>{{ $participant->dob }}</td>
                                             <td field-key='health_facility'>{{ $participant->pivot->facility }}</td>
-                                            
                                             <td>
                                                 @can('participant_view')
                                                     <a href="" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
@@ -140,16 +130,9 @@
                             </table>
                         </div>
 
-                        <div class="box-footer">
-                          
-
-
+                        <div class="box-footer">                       
 
                         </div>
-
-
-
-
                     </div>
                 </div>
             </div>
@@ -313,7 +296,7 @@
     </div>
  
 
-    <!--=========================== Modal to Add new  Participants to the selected Training ==============================================-->
+    <!--=========================== Modal to Add new  Participants to the selected Mentorship ==============================================-->
 
 
     <div id="NewPartsModal" class="modal fade" role="document">
@@ -333,7 +316,7 @@
                     <div class="box-default">
                         <div class="box-success">
 
-                            train
+                           Mentor
 
                         </div>
                         <div class="box-body">
@@ -342,10 +325,8 @@
                                 {{ csrf_field() }}
                                 <div class="row">
 
-                                    <input type="hidden" name="training_id" id="training_id" value="{{$training->id}}">
+                                    <input type="hidden" name="mentorship_id" id="mentorship_id" value="{{$training->id}}">
 
-
-                                   
                                     <div class="col-xs-4 form-group" id="first_name-form">
                                         {!! Form::label('first_name', trans('quickadmin.participant.fields.first-name').'*', ['class' => 'control-label']) !!}
                                         {!! Form::text('first_name', old('first_name'), ['class' => 'form-control','id'=>'first_name', 'placeholder' => '', 'required' => '']) !!}
@@ -395,9 +376,12 @@
                                     </div>
                                 </div>
                                 <div class="row">
+
                                     <div class="col-xs-3 form-group" id="heath_facility-form">
+ 
                                         {!! Form::label('health_facility', trans('quickadmin.participant.fields.health-facility').'', ['class' => 'control-label']) !!}
-                                        {!! Form::text('health_facility', old('health_facility'), ['class' => 'form-control','id'=>'health_facility', 'placeholder' => '']) !!}
+                                        {!! Form::select('health_facility', $venues, old('health_facility'), ['class' => 'form-control select2','id'=>'health_facility']) !!}
+                                      
                                         <span class="help-block">
                                             <strong id="error-health_facility"></strong>
                                     </span>
@@ -442,7 +426,7 @@
 
                                         <span class="help-block">
                                             <strong id="error-job_title_id"></strong>
-                                    </span>
+                                        </span>
                                     </div>
                                     <div class="col-xs-4 form-group" id="profession-form">
                                         {!! Form::label('profession', 'Cadre'.'', ['class' => 'control-label']) !!}
@@ -896,10 +880,10 @@
         var save_method; //for save method string
         //Function for saving the Work Experience
         function saveParticipant() {
-            var url = "{{route('admin.trainings.saveParticipant')}}";
+            var url = "{{route('admin.mentorship.saveParticipant')}}";
             var data = $("#participant_form").serialize();
 
-            $('#pin-form').removeClass('has-error');
+         
             $('#first_name-form').removeClass('has-error');
             $('#middle_name-form').removeClass('has-error');
             $('#last_name-form').removeClass('has-error');
@@ -909,13 +893,9 @@
             $('#postal_address-form').removeClass('has-error');
             $('#district-form').removeClass('has-error');
             $('#subcounty-form').removeClass('has-error');
-            $('#profession-form').removeClass('has-error');
-            $('#comment-form').removeClass('has-error');
-            $('#prescore-form').removeClass('has-error');
-            $('#postscore-form').removeClass('has-error');
+            $('#profession-form').removeClass('has-error');      
 
-
-            $('#error-pin').html("");
+          
             $('#error-first_name').html("");
             $('#error-middle_name').html("");
             $('#error-last_name').html("");
@@ -926,9 +906,7 @@
             $('#error-district').html("");
             $('#error-subcounty').html("");
             $('#error-profession').html("");
-            $('#error-comments').html("");
-            $('#error-prescore').html("");
-            $('#error-postscore').html("");
+         
 
             //Ajax adding data to the database
             $.ajax({
@@ -937,13 +915,8 @@
                 data: data,
                 dataType: "JSON",
                 success: function (data) {
-
                     if(data.errors)
-                    {
-                        if(data.errors.pin){
-                            $('#pin-form').addClass('has-error');
-                            $('#error-pin').html(data.errors.pin[0]);
-                        }
+                    {                       
                         if(data.errors.first_name){
                             $('#first_name-form').addClass('has-error');
                             $('#error-first_name').html(data.errors.first_name[0]);
@@ -981,30 +954,14 @@
                             $('#profession-form').addClass('has-error');
                             $('#error-profession').html(data.errors.subcounty[0]);
                         }
-                        if(data.errors.comments){
-                            $('#comment-form').addClass('has-error');
-                            $('#error-comments').html(data.errors.subcounty[0]);
-                        }
-                        if(data.errors.prescore){
-                            $('#prescore-form-form').addClass('has-error');
-                            $('#error-prescore').html(data.errors.subcounty[0]);
-                        }
-                        if(data.errors.postscore){
-                            $('#postscore-form-form').addClass('has-error');
-                            $('#error-postscore').html(data.errors.subcounty[0]);
-                        }
+                       
                     }
 
                     else {
 
                         console.log(data);
-
-
-
                         $('#participant_form')[0].reset();
                         $('#NewPartsModal').modal('hide');
-
-
                         location.reload();
 
                         toastr.success('Successfully added the Participant!', 'Success Alert', {timeOut: 5000});
@@ -1109,56 +1066,7 @@
 
         });
     </script>
-    <script>
-        $(document).ready(function(){
-            $("#pin").blur(function(){
-
-                $('#a_training').val($(this).data('fname'));
-                //$('#a_hidden').val($(this).data('id'));
-
-                var participant_pin = $('#pin').val();
-                var participant_name = 'masaba';
-
-                var url = "{{route('admin.participants.check_userpin')}}";
-                console.log(participant_pin);
-
-
-                $.ajax({
-
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    type: 'POST',
-                    url: url,
-                    data: {participant_pin: participant_pin, _token: '{{csrf_token()}}'},
-                    dataType: "Json",
-
-                    success: function(data){
-                        if(data == null){
-
-                            alert('nothing');
-                            console.log('nothing');
-
-                        } else {
-
-                            console.log(data);
-
-                            var fname = data.first_name;
-                            var lname = data.last_name;
-                            var participant_id = data.id;
-                            var pin = participant_pin;
-                            var training_id=1;
-                            var training='string';
-
-                            $('#error-pin').html(" <span><a data-toggle=\"modal\" id=\"p_attach\" href=\"#attachModal\" data-fname='"+fname+"' data-lname='"+lname+"' data-pin='"+pin+"' data-partid='"+participant_id+"'>Participant already exists</a> </span>")
-
-                        }
-                    }
-                });
-
-            });
-        });
-    </script>
+    
 
     <script>
         var save_method;
@@ -1178,47 +1086,7 @@
 
 
 
-        function gradeParticipant() {
-
-            $('#a_training').val($(this).data('id'));
-
-            var url = "{{route('admin.trainings.gradeparts')}}";
-            var data = $("#part_form").serialize();
-
-            console.log(data);
-            //Ajax adding data to the database
-            $.ajax({
-                type: "POST",
-                url: url,
-                data: data,
-                dataType: "JSON",
-                success: function (data) {
-
-                    if(data.errors)
-                    {
-                        toastr.error(data.errors);
-                    }
-
-                    else {
-
-                        //$('#a_form')[0].reset();
-                        $('#part_form')[0].reset();
-
-
-                        $('#attachModal').modal('hide');
-                        $('#NewPartsModal').modal('hide');
-                        location.reload();
-
-                        toastr.success('Successfully attached Participants to the training!', 'Success Alert', {timeOut: 5000});
-                    }
-                },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
-                    alert(errorThrown);
-                }
-            });
-
-        }
+    
     </script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>
