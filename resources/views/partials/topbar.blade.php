@@ -17,14 +17,31 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
-        </a>
+        </a>  
+        <div class="pull-right">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{auth()->user()->name}}
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+             
+                  <li>
+                    <a class="" href="#logout" onclick="$('#logout').submit();">
+                        <i class="fa fa-key"></i>
+                        <span class="title">@lang('quickadmin.qa_logout')</span>
+                    </a>
+                     </li>
+                 
+                </ul>
+              </div>
+           
+            
+        </div>   
 
-        
-
-        
 
     </nav>
+  
 </header>
+
 
 
 
