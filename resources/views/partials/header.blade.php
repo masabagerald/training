@@ -3,7 +3,8 @@
         <div class="navbar-header">
             <a href="{{ url('/') }}"
                class="navbar-brand">
-               <h6> @lang('quickadmin.quickadmin_title')</h6>
+               <h6> me@lang('quickadmin.quickadmin_title')</h6>
+               
             </a>
         </div>
         <a href="javascript:;"
@@ -11,9 +12,11 @@
            data-toggle="collapse"
            data-target=".navbar-collapse">
         </a>
+        
 
         <div class="top-menu">
             <ul class="nav navbar-nav pull-right">
+               <span>h</span>
                 
             </ul>
         </div>
