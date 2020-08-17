@@ -3,9 +3,7 @@
 <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
-        <ul class="sidebar-menu">
-
-             
+        <ul class="sidebar-menu">            
 
             <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
                 <a href="{{ url('/') }}">
@@ -14,9 +12,6 @@
                 </a>
             </li>
 
-            
-        
-           
             @can('user_management_access')
             <li class="treeview">
                 <a href="#t">
@@ -59,8 +54,7 @@
 
                 </ul>
             </li>
-            @endcan
-          
+            @endcan          
             @can('user_management_access')
             <li class="treeview">
                 <a href="#t">
@@ -93,8 +87,7 @@
                             <span>@lang('quickadmin.training.title')</span>
                         </a>
                     </li>
-                @endcan
-                    
+                @endcan                   
 
 <<<<<<< HEAD
             @can('user_management_access')
@@ -283,9 +276,7 @@
 
                 </ul>
             </li>
-             @endcan
-
-             
+             @endcan             
             @can('user_management_access')
             <li class="treeview">
                 <a href="#">
@@ -302,7 +293,8 @@
                             <i class="fa fa-briefcase"></i>
                             <span>@lang('quickadmin.roles.title')</span>
                         </a>
-                    </li>@endcan
+                    </li>
+                    @endcan
                     
                     @can('user_access')
                     <li>
@@ -310,8 +302,7 @@
                             <i class="fa fa-user"></i>
                             <span>@lang('quickadmin.users.title')</span>
                         </a>
-                    </li>@endcan
-                    
+                    </li>@endcan                    
                     @can('user_action_access')
                     <li>
                         <a href="{{ route('admin.user_actions.index') }}">
@@ -322,16 +313,7 @@
                     
                 </ul>
             </li>
-            @endcan
-            
-
-         
-
-            
-
-            
-
-
+            @endcan        
 
             <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
                 <a href="{{ route('auth.change_password') }}">
