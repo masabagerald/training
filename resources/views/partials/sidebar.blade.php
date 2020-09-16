@@ -89,6 +89,53 @@
                     </li>
                 @endcan                   
 
+<<<<<<< HEAD
+            @can('user_management_access')
+                <li class="treeview">
+                    <a href="#t">
+                        <i class="fa fa-users"></i>
+                        <span>Survey and feedbacks</span>
+                        <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        @can('role_access')
+                            <li>
+                                <a href="{{ route('admin.categories.index') }}">
+                                    <i class="fa fa-briefcase"></i>
+                                    <span>Categories</span>
+                                </a>
+                            </li>@endcan
+                            @can('role_access')
+                                <li>
+                                    <a href="{{ route('admin.subcategories.index') }}">
+                                        <i class="fa fa-briefcase"></i>
+                                        <span>Sub category</span>
+                                    </a>
+                                </li>@endcan
+
+                        @can('user_access')
+                            <li>
+                                <a href="{{ route('admin.assessments.index') }}">
+                                    <i class="fa fa-user"></i>
+                                    <span>Feedback Report</span>
+                                </a>
+                            </li>@endcan
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+                            <li>
+                                <a href="{{ route('admin.reports.index') }}">
+                                    <i class="fa fa-user"></i>
+                                    <span>Training Report</span>
+                                </a>
+                            </li>
+>>>>>>> 61d2400fe89070e3c429b2b1df45b4380afd931e
+=======
+                            
+>>>>>>> 0dfa81a6d1e90a46d8a335952ff8077a07cf6aee
+=======
                     @can('user_access')
                         <li>
                             <a href="{{ route('admin.mentorship.index') }}">
@@ -102,6 +149,7 @@
                                 <span>Training Report</span>
                             </a>
                         </li>
+>>>>>>> 227ee55ec0182e6ead3a87232bd9d62933b048d8
 
                     @can('user_action_access')
                         @endcan
