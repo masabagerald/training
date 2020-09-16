@@ -33,7 +33,8 @@
                             @if ( request('show_deleted') != 1 )<th style="text-align:center;"><input type="checkbox" id="select-all" /></th>@endif
                         @endcan
 
-                            <th>@lang('quickadmin.training.fields.type-of-training')</th>
+                        <th>Training Title</th>
+                        <th>@lang('quickadmin.training.fields.type-of-training')</th>
                         <th>@lang('quickadmin.training.fields.region')</th>
                         <th>@lang('quickadmin.training.fields.venue')</th>
                         <th>@lang('quickadmin.training.fields.start-date')</th>
@@ -57,7 +58,8 @@
                                 @can('training_delete')
                                     @if ( request('show_deleted') != 1 )<td></td>@endif
                                 @endcan
-								
+
+                                <td><a href="{{route('admin.trainings.show',[$training->id])}}">{{ $training->title}}</a></td>		
 
                                 <td field-key='type_of_training'><a href="{{route('admin.trainings.show',[$training->id])}}">{{ $training->type->name or '' }}</a></td><td field-key='region'>{{ $training->region }}</td>
                                 <td field-key='venue'>{{ $training->venue }}</td>
