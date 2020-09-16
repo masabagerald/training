@@ -60,7 +60,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::get('training/participants', ['uses' => 'Admin\TrainingsController@participant_page', 'as' => 'trainings.participant_page']);
 
     Route::get('save_and_add_part', ['uses' => 'Admin\TrainingsController@save_and_add', 'as' => 'trainings.save_and_add']);
-    Route::post('saveParticipant', ['uses' => 'Admin\TrainingsController@saveParticipant', 'as' => 'trainings.saveParticipant']);
+    Route::post('training/saveParticipant', ['uses' => 'Admin\TrainingsController@saveParticipant', 'as' => 'trainings.saveParticipant']);
     Route::get('try/{training}', ['uses' => 'Admin\TrainingsController@page', 'as' => 'trainings.page']);
 
     Route::post('attach/participants', ['uses' => 'Admin\TrainingsController@attachparts', 'as' => 'trainings.attachparts']);
@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::post('grade/participants', ['uses' => 'Admin\TrainingsController@gradeparts', 'as' => 'trainings.gradeparts']);
     Route::post('updatepivot', ['uses' => 'Admin\TrainingsController@updatepivot', 'as' => 'trainings.updatepivot']);
 
-    Route::post('addParticipant', ['uses' => 'Admin\TrainingsController@addParticipant', 'as' => 'trainings.addParticipant']);
+    Route::post('training/addParticipant', ['uses' => 'Admin\TrainingsController@addParticipant', 'as' => 'trainings.addParticipant']);
 
 
 
@@ -129,9 +129,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
 
 
-    Route::post('addParticipant', ['uses' => 'Admin\MentorshipController@addParticipant', 'as' => 'mentorship.addParticipant']);
-    Route::post('attachMentors', ['uses' => 'Admin\MentorshipController@attachMentors', 'as' => 'mentorship.attachMentors']);
-    Route::post('saveParticipant', ['uses' => 'Admin\MentorshipController@saveParticipant', 'as' => 'mentorship.saveParticipant']);
+    Route::post('mentorship/addParticipant', ['uses' => 'Admin\MentorshipController@addParticipant', 'as' => 'mentorship.addParticipant']);
+    Route::post('mentorship/attachMentors', ['uses' => 'Admin\MentorshipController@attachMentors', 'as' => 'mentorship.attachMentors']);
+    Route::post('mentorship/saveParticipant', ['uses' => 'Admin\MentorshipController@saveParticipant', 'as' => 'mentorship.saveParticipant']);
    // mentorship.attachMentors
 
 

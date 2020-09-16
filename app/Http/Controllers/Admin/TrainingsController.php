@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Facility;
 use App\Http\Requests\Admin\StoreParticipantsRequest;
 use App\Participant;
 use App\PreviousTraining;
@@ -186,10 +187,11 @@ class TrainingsController extends Controller
 
         $all_participants = \App\Participant::get()->pluck('first_name','id')->prepend(trans('quickadmin.qa_please_select'), '');
         $all_participants =  Participant::all();
+        $facilities = Facility::get()->pluck('name','id')->prepend(trans('quickadmin.qa_please_select'), '');
         //dd($all_participants);
 
 
-        return view('admin.trainings.show', compact('training','participants','enum_sex','job_titles','all_participants'));
+        return view('admin.trainings.show', compact('training','participants','enum_sex','job_titles','all_participants','facilities'));
     }
 
 

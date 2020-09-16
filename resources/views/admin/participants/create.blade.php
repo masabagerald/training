@@ -152,7 +152,8 @@
                 </div>
                 <div class="col-xs-6 form-group">
                     {!! Form::label('health_facility', trans('quickadmin.participant.fields.health-facility').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('health_facility', old('health_facility'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                   
+                    {!! Form::select('health_facility', $facilities, old('health_facility'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('health_facility'))
                         <p class="help-block">

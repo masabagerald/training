@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Facility;
 use App\Imports\ParticipantImport;
 use App\Imports\ParticipantsImport;
 use App\Participant;
@@ -60,8 +61,9 @@ class ParticipantsController extends Controller
         
         $job_titles = \App\Designation::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $enum_sex = Participant::$enum_sex;
+        $facilities = Facility::get()->pluck('name','id')->prepend(trans('quickadmin.qa_please_select'), '');
             
-        return view('admin.participants.create', compact('enum_sex', 'job_titles'));
+        return view('admin.participants.create', compact('enum_sex', 'job_titles','facilities'));
     }
 
     /**
@@ -108,10 +110,11 @@ class ParticipantsController extends Controller
         
         $job_titles = \App\Designation::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
         $enum_sex = Participant::$enum_sex;
+        $facilities = Facility::get()->pluck('name','id')->prepend(trans('quickadmin.qa_please_select'), '');
             
         $participant = Participant::findOrFail($id);
 
-        return view('admin.participants.edit', compact('participant', 'enum_sex', 'job_titles'));
+        return view('admin.participants.edit', compact('participant', 'enum_sex', 'job_titles','facilities'));
     }
 
     /**
