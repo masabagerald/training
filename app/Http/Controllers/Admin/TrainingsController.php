@@ -364,27 +364,24 @@ class TrainingsController extends Controller
       }
 
       public function addParticipant(Request $request){
+
           $training = Training::find($request->id);
+           
+            $training->participants()->attach($request->students);
 
-         // dd($request->students);
+            if($training){
 
+                Session::flash('message','Added Successfully');
 
-
-              $training->participants()->attach($request->students);
-
-              if($training){
-
-                  Session::flash('message','Added Successfully');
-
-              }else{
-                  Session::flash('message','something went wrong');
-              }
+            }else{
+                Session::flash('message','something went wrong');
+            }
 
 
 
 
 
-          return back();
+    return back();
 
       }
 

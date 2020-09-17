@@ -200,7 +200,7 @@
 
                         <div class="box-body">
 
-                            <form action="" method="post">
+                            <form action="{{route('admin.trainings.addParticipant')}}" method="post">
                                 {{ csrf_field() }}
 
                                 <input type="hidden" name="id" value="{{$training->id}}">
@@ -551,14 +551,8 @@
                                            <input type="text"  class="form-control"  placeholder="{{$training->type->name}}" readonly>
 
                                        </div>
-
                                    <input type="hidden" name="pin" id="p_pin" >
                                    <input type="hidden" name="participant_id" id="participant_id">
-
-
-
-
-
                                    <div class="col-md-6 form-group">
                                        <label class="control-label">Participant</label>
                                        <input type="text" name="a_training" id="a_part" class="form-control"  readonly>
@@ -566,27 +560,15 @@
                                        {{--{!! Form::select('participant_id', $all_participants, old('participant_id'), ['class' => 'form-control select2','id'=>'a_participant']) !!}--}}
 
                                    </div>
-
-
                                </div>
-
-
                                <div class="row">
                                    <div class="col-md-6 form-group">
                                        <label class="control-label">Pre test score</label>
-
-
-
-                                       <input type="text" name="a_pre" id=a_pre"" class="form-control" placeholder="pre-test score">
-
-
+                                       <input type="text" name="a_pre" id="a_pre" class="form-control" placeholder="pre-test score">
                                    </div>
                                    <div class="col-md-6 form-group">
                                        <label class="control-label">Post Test Score</label>
-
                                            <input type="text" name="a_post" id="a_post" class="form-control" placeholder="post-test score">
-
-
                                    </div>
 
                                </div>
@@ -1144,20 +1126,14 @@
        // data-id data-facility data-pre data-post
 
         $(document).on('click', '#editlink', function() {
-
         // $('#a_training').val(data.id);
        // $('#a_training').val($(this).data('id'));
-
-
         $('#edit_pre').val($(this).data('post'));
         $('#edit_post').val($(this).data('post'));
         $('#edit_participant').val($(this).data('name'));
         $('#edit_facility').val($(this).data('facility'));
         $('#edit_part_id').val($(this).data('id'));
         $('#edit_pin').val($(this).data('pin'));
-
-
-
         });
 
 
