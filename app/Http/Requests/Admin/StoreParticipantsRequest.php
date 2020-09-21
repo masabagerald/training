@@ -24,7 +24,7 @@ class StoreParticipantsRequest extends FormRequest
     {
 
         return [
-            'pin'=>'required|unique:participants,pin',
+          
             'first_name' => 'required',
             'sex' => 'required',
             'dob' => 'nullable|date_format:'.config('app.date_format'),

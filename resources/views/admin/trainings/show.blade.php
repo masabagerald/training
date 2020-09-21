@@ -275,7 +275,7 @@
 
                                     <div class="col-xs-3 form-group" id="pin-form">
                                         {!! Form::label('pin', trans('quickadmin.participant.fields.pin').'*', ['class' => 'control-label']) !!}
-                                        {!! Form::text('pin', old('pin'), ['class' => 'form-control','id'=>'pin', 'placeholder' => '', 'required' => '']) !!}
+                                        {!! Form::text('pin', old('pin'), ['class' => 'form-control','id'=>'pin', 'placeholder' => '']) !!}
 
                                         <span class="help-block">
                                             <div id="error-pin"></div>
@@ -332,7 +332,7 @@
 
                                     <div class="col-xs-3 form-group" id="dob-form">
                                         {!! Form::label('dob', trans('quickadmin.participant.fields.dob').'', ['class' => 'control-label']) !!}
-                                        {!! Form::date('dob', old('dob'), ['class' => 'form-control date','id'=>'dob', 'placeholder' => '']) !!}
+                                        {!! Form::text('dob', old('dob'), ['class' => 'form-control date','id'=>'dob', 'placeholder' => '']) !!}
                                         <span class="help-block">
                                             <strong id="error-dob"></strong>
                                     </span>
