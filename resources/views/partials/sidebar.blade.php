@@ -87,6 +87,7 @@
                             <span>@lang('quickadmin.training.title')</span>
                         </a>
                     </li>
+                   
                 @endcan                   
 
                     @can('user_access')
@@ -100,6 +101,12 @@
                             <a href="{{ route('admin.mentorship.index') }}">
                                 <i class="fa fa-user"></i>
                                 <span>Training Report</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('admin.regions.index') }}">
+                                <i class="fa fa-book"></i>
+                                <span>Regions</span>
                             </a>
                         </li>
 

@@ -135,6 +135,13 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
    // mentorship.attachMentors
 
 
+   Route::resource('regions', 'Admin\RegionsController');
+   Route::post('regions_mass_destroy', ['uses' => 'Admin\RegionsController@massDestroy', 'as' => 'regions.mass_destroy']);
+
+   Route::post('regions_restore/{id}', ['uses' => 'Admin\RegionsController@restore', 'as' => 'regions.restore']);
+   Route::delete('regions_perma_del/{id}', ['uses' => 'Admin\RegionsController@perma_del', 'as' => 'regions.perma_del']);
+  
+
 
 
 
