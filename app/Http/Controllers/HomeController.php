@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use ConsoleTVs\Charts\Facades\Charts;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -113,7 +114,17 @@ class HomeController extends Controller
 
         $mentorship= Mentorship::whereBetween('srart_date', [$start, $end])->get();
 
-        $trainings = Training::all();
+      //  $trainings = Training::all();
+  
+    $trainings = DB::table('trainings')
+    ->join('training_types','training_types.id' ,'=','trainings.type_of_training')
+    ->select('trainings.*','training_types.name as tname')
+    ->get();
+
+
+   
+
+     
 
         $chart3 = Charts::database($mentorship,'bar','highcharts')   
     
@@ -145,16 +156,18 @@ class HomeController extends Controller
     ->dimensions(1000, 500)
     ->labels($mentorship->load('mentorship_category'))
     ->responsive(true)
-    ->groupBy('category');
+    ->groupBy($mentorship[0]->mentorship_category->name);
 
 
     $training_chart = Charts::database($trainings, 'pie', 'highcharts')
-    ->title("Training per Type")
+    ->title("Training per category")
     ->elementLabel("Training Type")
-    ->dimensions(1000, 500)
+    ->dimensions(2000, 1000)
     ->responsive(true)
+    ->groupBy('tname')
+    ;
   
-    ->groupBy('type_of_training');
+  
 
 
     $participant_chart = Charts::database(Participant::all(), 'pie', 'highcharts')

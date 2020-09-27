@@ -167,7 +167,7 @@
         </div>
 
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-md-6">
                 <div class="box box-info">
                     <div class="box-header">
                         <h3 class="box-title">Analysis</h3>
@@ -186,10 +186,10 @@
                     </div><!-- /.box-body -->
                 </div>
             </div>
-            <div class="col-md-5">
+            <div class="col-md-6">
                 <div class="box box-info">
                     <div class="box-header">
-                        <h3 class="box-title">Analysis</h3>
+                        <h3 class="box-title">Training Categories</h3>
                     </div>
                     <div class="box-body">
                         {!! Charts::styles() !!}
