@@ -45,8 +45,8 @@
                 
                 <div class="col-xs-6 form-group">
                     {!! Form::label('region', trans('quickadmin.training.fields.region').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('region', old('region'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
+                    {!! Form::select('region', $regions, old('region'), ['class' => 'form-control select2', 'required' => '']) !!}
+                     <p class="help-block"></p>
                     @if($errors->has('region'))
                         <p class="help-block">
                             {{ $errors->first('region') }}

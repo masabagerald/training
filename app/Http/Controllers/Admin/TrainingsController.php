@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreTrainingsRequest;
 use App\Http\Requests\Admin\UpdateTrainingsRequest;
 use App\Http\Controllers\Traits\FileUploadTrait;
+use App\Region;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Session;
 
@@ -60,7 +61,8 @@ class TrainingsController extends Controller
         $enum_sex = Participant::$enum_sex;
         //$types = TrainingType::all();
         $types = TrainingType::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
-        return view('admin.trainings.create',compact('enum_sex','job_titles','types'));
+        $regions = Region::get()->pluck('name', 'id')->prepend(trans('quickadmin.qa_please_select'), '');
+        return view('admin.trainings.create',compact('enum_sex','job_titles','types','regions'));
     }
 
     /**

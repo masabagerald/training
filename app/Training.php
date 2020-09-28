@@ -106,5 +106,10 @@ class Training extends Model implements HasMedia
 
         return $this->belongsTo(TrainingType::class,'type_of_training');
     }
+
+    public function region(){
+
+        return $this->belongsTo(Region::class,'region');
+    }
     
 }
