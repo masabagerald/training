@@ -15,6 +15,7 @@ class AddTitleToTraining extends Migration
     {
         Schema::table('trainings', function (Blueprint $table) {
             //
+            $table->string('title');
         });
     }
 
@@ -27,7 +28,7 @@ class AddTitleToTraining extends Migration
     {
         Schema::table('trainings', function (Blueprint $table) {
             //
-            $table->string('title');
+            
         });
     }
 }

@@ -122,10 +122,6 @@ class HomeController extends Controller
     ->get();
 
 
-   
-
-     
-
         $chart3 = Charts::database($mentorship,'bar','highcharts')   
     
           ->dateColumn('created_at')

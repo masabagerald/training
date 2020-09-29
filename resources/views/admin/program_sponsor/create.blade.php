@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h3 class="page-title">@lang('quickadmin.roles.title')</h3>
-    {!! Form::open(['method' => 'POST', 'route' => ['admin.training_types.store']]) !!}
+    <h3 class="page-title">Program Sponsors</h3>
+    {!! Form::open(['method' => 'POST', 'route' => ['admin.program_sponsors.store']]) !!}
 
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -22,12 +22,12 @@
                     @endif
                 </div>
                 <div class="col-xs-6 form-group">
-                    {!! Form::label('description', 'description'.'*', ['class' => 'control-label']) !!}
-                    {!! Form::text('description', old('description'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
+                    {!! Form::label('donor', 'donor'.'*', ['class' => 'control-label']) !!}
+                    {!! Form::text('donor', old('donor'), ['class' => 'form-control', 'placeholder' => '', 'required' => '']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('description'))
+                    @if($errors->has('donor'))
                         <p class="help-block">
-                            {{ $errors->first('description') }}
+                            {{ $errors->first('donor') }}
                         </p>
                     @endif
                 </div>

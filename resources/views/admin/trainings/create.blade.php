@@ -89,7 +89,8 @@
                 </div>
                 <div class="col-xs-4 form-group">
                     {!! Form::label('sponsor', trans('quickadmin.training.fields.sponsor').'', ['class' => 'control-label']) !!}
-                    {!! Form::text('sponsor', old('sponsor'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                
+                    {!! Form::select('sponsor', $projects, old('sponsor'), ['class' => 'form-control select2', 'required' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('sponsor'))
                         <p class="help-block">

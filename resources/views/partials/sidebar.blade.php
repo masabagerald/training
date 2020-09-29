@@ -109,6 +109,12 @@
                                 <span>Regions</span>
                             </a>
                         </li>
+                        <li>
+                            <a href="{{ route('admin.program_sponsors.index') }}">
+                                <i class="fa fa-book"></i>
+                                <span>Program Sponsors</span>
+                            </a>
+                        </li>
 
                     @can('user_action_access')
                         @endcan

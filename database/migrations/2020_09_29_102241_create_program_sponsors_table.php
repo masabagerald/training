@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\DB;
 
-class ChangeHealthFacilityToInt extends Migration
+class CreateProgramSponsorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -17,14 +17,13 @@ class ChangeHealthFacilityToInt extends Migration
     {
         DB::getDoctrineSchemaManager()->getDatabasePlatform()->registerDoctrineTypeMapping('enum', 'string');
     }
-
- 
     public function up()
     {
-        Schema::table('participants', function (Blueprint $table) {
-            //
-            $table->string('health_facility')->nullable()->change();
-
+        Schema::create('program_sponsors', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->string('donor')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -35,8 +34,6 @@ class ChangeHealthFacilityToInt extends Migration
      */
     public function down()
     {
-        Schema::table('participants', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('program_sponsors');
     }
 }

@@ -140,6 +140,12 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
 
    Route::post('regions_restore/{id}', ['uses' => 'Admin\RegionsController@restore', 'as' => 'regions.restore']);
    Route::delete('regions_perma_del/{id}', ['uses' => 'Admin\RegionsController@perma_del', 'as' => 'regions.perma_del']);
+
+   Route::resource('program_sponsors', 'Admin\ProgramSponsorController');
+   Route::post('program_sponsor_mass_destroy', ['uses' => 'Admin\ProgramSponsorController@massDestroy', 'as' => 'program_sponsors.mass_destroy']);
+
+   Route::post('program_sponsor_restore/{id}', ['uses' => 'Admin\ProgramSponsorController@restore', 'as' => 'program_sponsors.restore']);
+   Route::delete('program_sponsor_perma_del/{id}', ['uses' => 'Admin\ProgramSponsorsController@perma_del', 'as' => 'program_sponsors.perma_del']);
   
 
 
