@@ -61,12 +61,13 @@
 
                                 <td><a href="{{route('admin.trainings.show',[$training->id])}}">{{ $training->title}}</a></td>		
 
-                                <td field-key='type_of_training'><a href="{{route('admin.trainings.show',[$training->id])}}">{{ $training->type->name or '' }}</a></td><td field-key='region'>{{ $training->region }}</td>
+                                <td field-key='type_of_training'><a href="{{route('admin.trainings.show',[$training->id])}}">{{ $training->type->name or '' }}</a></td>
+                                <td field-key='region'>{{ $training->region_id->name or '' }}</td>
                                 <td field-key='venue'>{{ $training->venue }}</td>
                                 <td field-key='start_date'>{{ $training->start_date }}</td>
                                 <td field-key='end_date'>{{ $training->end_date }}</td>
 
-                                <td field-key='sponsor'>{{ $training->sponsor }}</td>
+                                <td field-key='sponsor'>{{ $training->project->name or '' }}</td>
                                 <td field-key='comments'>{!! $training->comments !!}</td>
                                 {{--<td field-key='pictures'> @foreach($training->getMedia('pictures') as $media)--}}
                                 {{--<p class="form-group">--}}

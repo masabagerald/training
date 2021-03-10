@@ -12,7 +12,7 @@
 
         <div class="panel-body table-responsive">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <table class="table  table-bordered table-striped">
                         <tr>
                             <th>@lang('quickadmin.training.fields.type-of-training')</th>
@@ -20,7 +20,7 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.training.fields.region')</th>
-                            <td field-key='region'>{{ $training->region }}</td>
+                            <td field-key='region'>{{  $training->region_id->name or '' }}</td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.training.fields.venue')</th>
@@ -37,7 +37,7 @@
 
                         <tr>
                             <th>@lang('quickadmin.training.fields.sponsor')</th>
-                            <td field-key='sponsor'>{{ $training->sponsor }}</td>
+                            <td field-key='sponsor'>{{ $training->project->name or ''}}</td>
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.training.fields.comments')</th>
@@ -54,7 +54,51 @@
                     </table>
 
                 </div>
-                <div class="col-md-8">
+
+                <div class="col-md-6">
+
+                    <div class="box box-info">
+                        <div class="box-header">
+                            Adding Participants
+
+                        </div>
+
+                        <div class="box-body">
+
+                            <form action="{{route('admin.trainings.addParticipant')}}" method="post">
+                                {{ csrf_field() }}
+
+                                <input type="hidden" name="id" value="{{$training->id}}">
+
+                                <label>Please select participants</label>
+
+                                <select name="students[]" class="form-control select2" multiple required="">
+                                    @foreach($all_participants as $participant)
+
+                                        <option value="{{$participant->id}}">{{$participant->first_name." ".$participant->last_name."(".$participant->pin.")"}}</option>
+
+                                    @endforeach
+                                </select>
+
+                                <input type="submit" class="btn btn-success" value="Add Participants">
+
+
+                            </form>
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+                </div>
+
+              
+            </div>
+            <div>
+                <div class="col-md-12">
 
                     <div class="box box-info">
                         <div class="box-header">
@@ -190,46 +234,7 @@
                     </div>
 
                 </div>
-                <div class="col-md-6">
-
-                    <div class="box box-info">
-                        <div class="box-header">
-                            Adding Participants
-
-                        </div>
-
-                        <div class="box-body">
-
-                            <form action="{{route('admin.trainings.addParticipant')}}" method="post">
-                                {{ csrf_field() }}
-
-                                <input type="hidden" name="id" value="{{$training->id}}">
-
-                                <label>Please select participants</label>
-
-                                <select name="students[]" class="form-control select2" multiple required="">
-                                    @foreach($all_participants as $participant)
-
-                                        <option value="{{$participant->id}}">{{$participant->first_name." ".$participant->last_name."(".$participant->pin.")"}}</option>
-
-                                    @endforeach
-                                </select>
-
-                                <input type="submit" class="btn btn-success" value="Add Participants">
-
-
-                            </form>
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
-
+               
 
 
             </div>
